@@ -1,5 +1,6 @@
 package ku.cs.models;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,4 +24,13 @@ class UserTest {
         boolean actual = user.validatePassword("plain-p@ssw0rd");
         assertTrue(actual);
     }
+
+    @Test
+    void testSetPassword() {
+        User user = new User("user01", "123");
+        user.setPassword("123");
+
+        assertEquals(BCrypt.withDefaults());
+    }
+
 }
