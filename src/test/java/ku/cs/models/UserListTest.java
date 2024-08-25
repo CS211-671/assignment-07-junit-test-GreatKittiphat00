@@ -12,20 +12,19 @@ class UserListTest {
     public void testUserListFindUser() {
         // TODO: add 3 users to UserList
         UserList userList = new UserList();
-        User u1 = new User("John", "Doe");
-        User u2 = new User("Jane", "Doe");
-        User u3 = new User("Jack", "Doe");
-        userList.addUser("John", "plain-p@ssw0rd");
-        userList.addUser("Jane", "plain-p@ssw0rd");
-        userList.addUser("Jack", "plain-p@ssw0rd");
+        userList.addUser("user01", "pass01");
+        userList.addUser("user02", "pass02");
+        userList.addUser("user03", "pass03");
+
 
         // TODO: find one of them
-        User foundUser = userList.findUserByUsername("John");
+        User user = userList.findUserByUsername("user02");
+
 
         // TODO: assert that UserList found User
-        String expected = "John Jane";
-        String actual = foundUser.getUsername();
-        assertEquals(expected, actual);
+        assertNotNull(user);
+        assertEquals("user02", user.getUsername());
+
         // String expected = "<one of username>";
         // String actual = user.getUsername();
         // assertEquals(expected, actual);
@@ -36,14 +35,17 @@ class UserListTest {
     public void testUserCanChangePassword() {
         // TODO: add 3 users to UserList
         UserList userList = new UserList();
-        User u1 = new User("John", "Doe");
-        User u2 = new User("Jane", "Doe");
-        User u3 = new User("Jack", "Doe");
+        userList.addUser("user01", "pass01");
+        userList.addUser("user02", "pass02");
+        userList.addUser("user03", "pass03");
+
 
         // TODO: change password of one user
+        boolean actual = userList.changePassword("user02", "pass02", "newPass02");
 
 
         // TODO: assert that user can change password
+        assertTrue(actual);
 
         // assertTrue(actual);
     }
@@ -53,13 +55,19 @@ class UserListTest {
     public void testUserListShouldReturnObjectIfUsernameAndPasswordIsCorrect() {
         // TODO: add 3 users to UserList
         UserList userList = new UserList();
-        User u1 = new User("John", "plain-p@ssw0rd");
-        User u2 = new User("Jane", "plain-p@ssw0rd");
-        User u3 = new User("Jack", "plain-p@ssw0rd");
+        userList.addUser("user01", "pass01");
+        userList.addUser("user02", "pass02");
+        userList.addUser("user03", "pass03");
+
 
         // TODO: call login() with correct username and password
+        User user = userList.login("user02", "pass02");
+
 
         // TODO: assert that User object is found
+        assertNotNull(user);
+        assertEquals("user02", user.getUsername());
+
         // assertEquals(expected, actual);
     }
 
@@ -68,13 +76,19 @@ class UserListTest {
     public void testUserListShouldReturnNullIfUsernameAndPasswordIsIncorrect() {
         // TODO: add 3 users to UserList
         UserList userList = new UserList();
-        User u1 = new User("John", "plain-p@ssw0rd");
-        User u2 = new User("Jane", "plain-p@ssw0rd");
-        User u3 = new User("Jack", "plain-p@ssw0rd");
+        userList.addUser("user01", "pass01");
+        userList.addUser("user02", "pass02");
+        userList.addUser("user03", "pass03");
+
 
         // TODO: call login() with incorrect username or incorrect password
+        User user = userList.login("user02", "wrongPassword");
+
+
 
         // TODO: assert that the method return null
+        assertNull(user);
+
         // assertNull(actual);
     }
 

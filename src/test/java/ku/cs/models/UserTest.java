@@ -30,7 +30,11 @@ class UserTest {
         User user = new User("user01", "123");
         user.setPassword("123");
 
-        assertEquals(BCrypt.withDefaults());
+        // เปรียบเทียบว่า password ที่ได้จาก user ตรงกับการแฮชใหม่หรือไม่
+        String hashedPassword = BCrypt.withDefaults().hashToString(12, "123".toCharArray());
+
+        // ตรวจสอบว่า user.getPassword() มีการแฮชที่ถูกต้องหรือไม่
+        assertTrue(BCrypt.verifyer().verify("123".toCharArray(), user.getPassword()).verified);
     }
 
 }
